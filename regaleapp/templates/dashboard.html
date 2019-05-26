@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dashboard</title>		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+	</head>
+	<body>
+		<!--Header-->
+		<nav class="navbar navbar-expand-lg navbar-light mybg">
+			<a class="navbar-brand" href="/" id="name"><i class="fas fa-utensils"></i>Drinder</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about/">About Us</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Services
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/restraunts/">Restraunts</a>
+							<a class="dropdown-item" href="/cusines/">Cusines</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/profiles/">Profiles</a>
+						</div>
+					</li>
+					<a class="nav-link" href="/contact_us/">Contact Us</a>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<a class="nav-link" href="/profile/{{profile.pk}}/">Hi {{user.first_name}}!</a>
+					<li class="nav-item myright"><a class="nav-link" href="/logout/" >logout</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!--End Header-->
+		<div class='headline'>
+			<h1>Welcome to Drinder</h1><br/>
+		</div>
+		<div class="container">
+			<h5>Where do you want to go for a Date?</h5><br>
+			<div class="row">
+				<form method="POST" action="/dashboard/{{profile.user.pk}}/" style="width:100%">
+					<div class="form-row">
+						
+						{% csrf_token %}
+						<div class="form-group col-md-6">
+							<select class="form-control" id="exampleFormControlSelect1" name="location" required>
+								<option value="">--Please choose a location--</option>
+								{% for location in locations %}
+									<option value="{{location.name}}">{{location.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="date" name="date" class="form-control" placeholder="Availability" required>
+						</div>
+						<div class="form-group col-md-2">
+						<button type="submit" name="search" value="Search" class="btn btn-success btn-md">Submit</button></span>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- Search results -->
+		<div>
+			<div class="container">
+				{% if request.method == 'POST'%}
+				<h2 style="text-align: center;">Search results for available foodie date</h2><br>
+				{% endif %}
+
+				{% if persons is not None %}
+				<div class="search-result-center">
+						{% for person in persons %}
+							<div class="card profile-cards">
+								<img src="{% static 'img/profile_img.jpg' %}" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">{{person.user.first_name}}</h5>
+									<p class="card-text">{{ person.bio }}</p>
+									<a href="/profile/{{person.pk}}/" class="btn btn-primary btn-sm">Visit Profile</a>
+								</div>
+							</div>
+						{% endfor %}
+				</div>
+				{% else %}
+				<h2 style="text-align: center;">No results available</h2><br>
+				{% endif %}
+			</div>
+		</div>
+			<!-- End of Search Results -->
+		
+	</div>
+</div>
+</body>
+</html>

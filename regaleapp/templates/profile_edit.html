@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit profile {{profile.user.name}}</title>		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+
+	</head>
+	<body>
+		<!--Header-->
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+	</head>
+	<body>
+		<!--Header-->
+		<nav class="navbar navbar-expand-lg navbar-light mybg">
+			<a class="navbar-brand" href="/" id="name"><i class="fas fa-utensils"></i> Drinder</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about/">About Us</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Services
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Restraunts</a>
+							<a class="dropdown-item" href="/cusines/">Cusines</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/profiles/">Profiles</a>
+						</div>
+					</li>
+					<a class="nav-link" href="/contact_us/">Contact Us</a>
+				</ul>
+			</div>
+		</nav>
+		<!--End Header-->
+		<div class="row">
+			<div class="col-lg-4 md-4 sm-4 xs-12"></div>
+			<div class="col-lg-4 md-4 sm-4 xs-12">
+				<div class="container profile-edit">
+					<form method="POST" action="/profile/{{profile.pk}}/edit/">
+						{% csrf_token %}
+						<div class="form-group">
+							<h5 style="text-align:center;"> {{profile.user.first_name}}</h5><br>
+							<input type="text" name="bio" value="{{profile.bio}}" class="form-control"><br>
+							<select class="form-control" id="exampleFormControlSelect1" name="location">
+								{% for location in locations %}
+									<option value="{{location.name}}">{{location.name}}<option>
+									{% endfor %}
+								</select>
+								<br>
+								<label>Availability Date</label><br>
+								<input type="date" name="available" value="{{profile.is_available}}" class="form-control"><br>
+								<center>
+									<button type="submit" name="save" value="Search" class="btn btn-success btn-md">Save</button>
+								</center>
+							</form>
+						</div>
+						
+					</div>
+					<div class="col-lg-4 md-4 sm-4 xs-12"></div>
+					
+				</div>
+			</div>
+		</body>
+	</html>

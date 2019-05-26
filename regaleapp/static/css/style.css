@@ -1,0 +1,92 @@
+.navbar-text{
+	font-weight: bold;
+	font-size: larger;
+	justify-content: center;
+	color: white;
+}
+
+#tagline{
+	padding-bottom: 50px;
+	padding-top: 60px;
+}
+
+.float-left{
+	padding-left: 350px
+}
+
+.float-right{
+	padding-right: 450px
+}
+
+.signup-form{
+	padding-top: 30px;
+}
+
+.btn-btn-secondary btn-sm{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logout-text{
+	style="justify-content:right;
+	font-weight: 60%;
+}
+
+.headline{
+	text-align: center;
+	padding-top: 30px
+}
+
+.mybg{
+	background-color: white;
+}
+
+#slideshow-img{
+	max-height: 800px;
+	object-fit: cover;
+}
+
+#name{
+	font-family: 'Anton', sans-serif;
+	font-weight: bolder;	
+}
+
+#headline{
+	font-family: 'Anton', sans-serif;
+	font-weight: bolder;	
+	font-size: xx-large;
+	object-position: center;
+}
+
+.container{
+	padding-top: 30px;
+	padding-bottom: 60px;
+}
+
+.btn-success{
+	border-radius: 5%;
+}
+/* serachresult style*/
+.search-result-center, .profile-view, .profile-edit, .search-form {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.profile-cards {
+	margin: 5px;
+	min-width: 150px;
+}
+
+.profile-edit{
+	border: 1px solid black;
+	border-radius: 5%;
+	margin-top: 50px;
+	width: 400px;
+
+ }
+
+ .search-form {
+ 	border: 1px solid black; width: 350px; padding: 30px; border-radius: 5%;
+ }

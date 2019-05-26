@@ -1,0 +1,138 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Regale is an online platform to find a foodie date of your interest">
+		<meta name="keywords" content="food, restuarants, date, places around, community, stranger, dining">
+		<meta name="author" content="Gagan">
+		<!-- Bootstrap CSS -->
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+				<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+
+		<!-- <link rel="stylesheet" href="static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<title>Drinder</title>	
+		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+	</head>
+	<body>
+		<!--Header-->
+		<nav class="navbar navbar-expand-lg navbar-light mybg">
+			<a class="navbar-brand" href="/" id="name"><i class="fas fa-utensils"></i> Drinder</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about/">About Us</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Services
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Restraunts</a>
+							<a class="dropdown-item" href="/cusines/">Cusines</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/profiles/">Profiles</a>
+						</div>
+					</li>
+					<a class="nav-link" href="/contact_us/">Contact Us</a>
+				</ul>
+			</div>
+		</nav>
+		<!--End Header-->
+		<!-- slideshow -->
+		<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" id="img-resolution">
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{% static 'img/p1.jpg' %}" alt="First slide" id="slideshow-img-1" >
+					<div class="carousel-caption d-md-block">
+						<h1 id="headline">Drinder</h1>
+						<h5>Find a foodie date of your interest</h5>
+						<p>based on rating of the user</p>
+					</div>
+				</div>
+				
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'img/p2.jpeg' %}" alt="Second slide" id="slideshow-img">
+					<div class="carousel-caption d-md-block">
+						<h5>Make new friends over a weekend</h5>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{% static 'img/p3.jpeg' %}" alt="Third slide" id="slideshow-img">
+					<div class="carousel-caption d-md-block">
+						<h5>Be part of the community</h5>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<!-- End slideshow -->
+			<!-- login and signup form -->
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-3 login-pad">
+						<h4>Login</h4>
+						{% if warning %}
+							<div class="alert alert-danger" role="alert">
+								{{warning}}
+							</div>
+						{% endif %}
+						<form method="POST" action="/login/"><br/>
+							{% csrf_token %}
+							<input class="form-control input_user" type="username" name="username" placeholder="username"><br/>
+							<input class="form-control input_user"type="password" name="password" placeholder="password"><br/>
+							<button type="submit" name="login" class="btn btn-success btn-sm">Login</button>
+						</form><br/>
+					</div>
+					<div class="container col-md-2"></div>
+					<div class="container col-md-3">
+						<h4>Sign Up</h4>
+						<form method="POST" action="/signup/" class="signup-form">
+							{% csrf_token %}
+							<input type="firstname" name="firstname" class="form-control input_user" value="" placeholder="firstname"><br/>
+							<input class="form-control input_user" type="lastname" name="lastname" placeholder="lastname"><br/>
+							<input class="form-control input_user" type="username" name="username" placeholder="username"><br/>
+							<input class="form-control input_user" type="email" name="email" placeholder="email"> <br/>
+							<input class="form-control input_user" type="password" name="password" placeholder="password"><br/>
+							<button type="submit" name="signup" class="btn btn-success btn-sm">Signup</button>
+						</form>
+					</div>
+					<div class="container col-md-2"></div>
+				</div>
+			</div>
+			<hr>
+			
+		</div>
+	</div>
+	<!-- End login and signup form -->
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

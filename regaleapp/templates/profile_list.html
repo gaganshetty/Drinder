@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User Profiles</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Regale is an online platform to find a foodie date of your interest">
+		<meta name="keywords" content="food, restuarants, date, places around, community, stranger, dining">
+		<meta name="author" content="Gagan">
+		<!-- Bootstrap CSS -->
+		<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<link rel="icon" href="{% static 'img/favicon.png' %}" type="image/gif" sizes="16x16">
+	</head>
+	<body>
+		<!--Header-->
+		<nav class="navbar navbar-expand-lg navbar-light mybg">
+			<a class="navbar-brand" href="/" id="name"><i class="fas fa-utensils"></i> Drinder</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about/">About Us</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Services
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Restraunts</a>
+							<a class="dropdown-item" href="/cusines/">Cusines</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/profiles/">Profiles</a>
+						</div>
+					</li>
+					<a class="nav-link" href="/contact_us/">Contact Us</a>
+				</ul>
+			</div>
+		</nav>
+		<!--End Header-->
+		<div class="container">
+			<h2 style="text-align: center;">Who's Trending this week</h2><br>
+			<div class="search-result-center">
+				{% for profile in profiles %}
+					<div class="card profile-cards" style="width: 18rem;">
+						<img src="{% static 'img/profile_img.jpg' %}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h6 class="card-title">{{profile.user.first_name}}</h6>
+							<p class="card-text">{{ profile.bio }}</p>
+							<a href="/profile/{{profile.pk}}/" class="btn btn-primary btn-sm">Visit Profile</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>
